@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Admin Dashboard - Automate Surveillance System</title>
+    <!-- Favicon-->
+    <!--<link rel="icon" href="../../static/adminResource/image/favicon.ico" type="image/x-icon">-->
+    <!-- Plugins Core Css -->
+    <link href="../../static/adminResource/css/app.min.css" rel="stylesheet">
+    <!-- Custom Css -->
+    <link href="../../static/adminResource/css/style.css" rel="stylesheet" />
+    <!-- You can choose a theme from css/styles instead of get all themes -->
+    <link href="../../static/adminResource/css/all-themes.css" rel="stylesheet" />
+    <script src="../../static/adminResource/js/highcharts.js"></script>
+    <script src="../../static/adminResource/js/exporting.js"></script>
+
+</head>
+
+<body class="light">
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+
+            <p>Please wait...</p>
+        </div>
+    </div>
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Top Bar -->
+    {%include 'admin/header.html'%}
+    <!-- #Top Bar -->
+    <div>
+        <!-- Left Sidebar -->
+        {%include 'admin/menu.html'%}
+        <!-- #END# Left Sidebar -->
+        <!-- Right Sidebar -->
+
+        <!-- #END# Right Sidebar -->
+    </div>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <ul class="breadcrumb breadcrumb-style ">
+                            <li class="breadcrumb-item">
+                                <h4 class="page-title">Admin Dashboard</h4>
+                            </li>
+                            <li class="breadcrumb-item bcrumb-1">
+                                <a href="/admin/loadDashboard">
+                                    <i class="fas fa-home"></i>Admin Dashboard </a>
+                            </li>
+                            <!--<li class="breadcrumb-item active">Dashboard</li>-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-3 col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-5 col-5">
+                                    <span class="info-box-icon"><i class="fas fa-users"></i></span>
+                                </div>
+                                <div class="col-lg-7 col-7">
+                                    <div>
+                                        <h2 class="col-green">
+                                            <span>{{user}}</span>
+                                        </h2>
+                                        <p>Register User</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-5 col-5">
+                                    <span class="info-box-icon"><i class="fas fa-lock-open"></i></span>
+                                </div>
+                                <div class="col-lg-7 col-7">
+                                    <div>
+                                        <h2 class="col-orange">
+                                            <span>{{active}}</span>
+                                        </h2>
+                                        <p>Active User</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-5 col-5">
+                                    <span class="info-box-icon"><i class="fas fa-lock"></i></span>
+                                </div>
+                                <div class="col-lg-7 col-7 pl-0">
+                                    <div>
+                                        <h2 class="col-cyan">
+                                            <span>{{deactive}}</span>
+                                        </h2>
+                                        <p>Deactive User</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-5 col-5">
+                                    <span class="info-box-icon"><i class="fas fa-database"></i></span>
+                                </div>
+                                <div class="col-lg-7 col-7">
+                                    <div>
+                                        <h2 class="col-purple">
+                                            <span>{{dataset}}</span>
+                                        </h2>
+                                        <p>Dataset</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+          <div id="container" style="min-width: 310px; height: 500px; margin: 0 auto"></div>
+        <input type="hidden" name="xvalue" value="Known"/>
+        <input type="hidden" name="yvalue" value="{{ known }}"/>
+
+        <input type="hidden" name="xvalue" value="Unknown"/>
+        <input type="hidden" name="yvalue" value="{{ unknown }}"/>
+
+
+        <script>
+            var xvalue = document.getElementsByName("xvalue");
+            var chartdata = "[";
+            var yvalue = document.getElementsByName("yvalue");
+            for (var i = 0; i < xvalue.length; i++) {
+                chartdata = chartdata + '{"name":"' + xvalue[i].value + '","y":' + parseFloat(yvalue[i].value) + '}';
+                if (i != xvalue.length - 1) {
+                    chartdata = chartdata + ',';
+                }
+            }
+            chartdata = chartdata + "]";
+            console.log(JSON.parse(chartdata));
+            Highcharts.chart({
+                chart: {
+                    renderTo: "container",
+
+                    type: 'pie'
+                },
+                title: {
+                    text: 'Monthly Average Detection'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                            style: {
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            }
+                        }
+                    }
+                },
+                series: [{
+                    name: 'Persons',
+                    colorByPoint: true,
+                    data: JSON.parse(chartdata)
+                }]
+            });
+        </script>
+
+
+            </div>
+
+        </div>
+    </section>
+    <script src="../../static/adminResource/js/app.min.js"></script>
+    <script src="../../static/adminResource/js/chart.min.js"></script>
+    <!-- Custom Js -->
+    <script src="../../static/adminResource/js/admin.js"></script>
+    <script src="../../static/adminResource/js/echarts.js"></script>
+    <script src="../../static/adminResource/js/apexcharts.min.js"></script>
+    <script src="../../static/adminResource/js/index.js"></script>
+</body>
+
+</html>

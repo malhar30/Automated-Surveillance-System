@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Upload Dataset - Automate Surveillance System</title>
+    <!-- Favicon-->
+    <!--<link rel="icon" href="../../static/adminResource/image/favicon.ico" type="image/x-icon">-->
+    <!-- Plugins Core Css -->
+    <link href="../../static/adminResource/css/app.min.css" rel="stylesheet">
+    <!-- Custom Css -->
+    <link href="../../static/adminResource/css/style.css" rel="stylesheet">
+    <!-- You can choose a theme from css/styles instead of get all themes -->
+    <link href="../../static/adminResource/css/all-themes.css" rel="stylesheet" />
+</head>
+
+<body class="light">
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+
+            <p>Please wait...</p>
+        </div>
+    </div>
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Top Bar -->
+    {%include 'admin/header.html' %}
+    <!-- #Top Bar -->
+    <div>
+        <!-- Left Sidebar -->
+        {%include 'admin/menu.html' %}
+        <!-- #END# Left Sidebar -->
+        <!-- Right Sidebar -->
+
+        <!-- #END# Right Sidebar -->
+    </div>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <ul class="breadcrumb breadcrumb-style ">
+                            <li class="breadcrumb-item">
+                                <h4 class="page-title">Add Dataset</h4>
+                            </li>
+                            <li class="breadcrumb-item bcrumb-1">
+                                <a href="/admin/loadDashboard">
+                                    <i class="fas fa-home"></i>Admin Dashboard</a>
+                            </li>
+                            <li class="breadcrumb-item bcrumb-2">
+                                <a href="#" onClick="return false;">Manage Dataset</a>
+                            </li>
+
+
+                            <li class="breadcrumb-item active">Add Dataset</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Basic Examples -->
+
+            <div class="row clearfix">
+                <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12"></div>
+                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                <strong></strong> </h2>
+
+                        </div>
+                        <div class="body">
+                            <form enctype="multipart/form-data" action="/admin/insertDataset" method="post">
+
+                                <center>
+                               <div class="file-field input-field">
+                                            <div class="btn">
+                                                <span>File</span>
+                                                <input type="file" name="file">
+                                            </div>
+                                            <div class="file-path-wrapper">
+                                                <input class="file-path validate" type="text">
+                                            </div>
+                                        </div>
+                                </center>
+
+                                <center>
+
+                                <div class="col-sm-6">
+
+                                        <input class="btn-hover color-7" type="submit" name="Submit"/>
+
+
+
+
+                                    </div>
+                                </center>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- Plugins Js -->
+    <script src="../../static/adminResource/js/app.min.js"></script>
+    <script src="../../static/adminResource/js/table.min.js"></script>
+    <!-- Custom Js -->
+    <script src="../../static/adminResource/js/admin.js"></script>
+    <script src="../../static/adminResource/js/jquery-datatable.js"></script>
+    <!-- Demo Js -->
+</body>
+
+</html>

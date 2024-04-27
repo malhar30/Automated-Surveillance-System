@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>View Complain - Automate Surveillance System</title>
+    <!-- Favicon-->
+    <!--<link rel="icon" href="../../static/adminResource/image/favicon.ico" type="image/x-icon">-->
+    <!-- Plugins Core Css -->
+    <link href="../../static/adminResource/css/app.min.css" rel="stylesheet">
+    <!-- Custom Css -->
+    <link href="../../static/adminResource/css/style.css" rel="stylesheet">
+    <!-- You can choose a theme from css/styles instead of get all themes -->
+    <link href="../../static/adminResource/css/all-themes.css" rel="stylesheet"/>
+</head>
+
+<body class="light">
+<!-- Page Loader -->
+<div class="page-loader-wrapper">
+    <div class="loader">
+
+        <p>Please wait...</p>
+    </div>
+</div>
+<!-- #END# Page Loader -->
+<!-- Overlay For Sidebars -->
+<div class="overlay"></div>
+<!-- #END# Overlay For Sidebars -->
+<!-- Top Bar -->
+{%include 'user/header.html' %}
+<!-- #Top Bar -->
+<div>
+    <!-- Left Sidebar -->
+    {%include 'user/menu.html' %}
+    <!-- #END# Left Sidebar -->
+    <!-- Right Sidebar -->
+
+    <!-- #END# Right Sidebar -->
+</div>
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <ul class="breadcrumb breadcrumb-style ">
+                        <li class="breadcrumb-item">
+                            <h4 class="page-title">View Complain</h4>
+                        </li>
+                        <li class="breadcrumb-item bcrumb-1">
+                            <a href="/user/loadDashboard">
+                                <i class="fas fa-home"></i>Home</a>
+                        </li>
+                        <li class="breadcrumb-item bcrumb-2">
+                            <a href="#" onClick="return false;">Complain</a>
+                        </li>
+                        <li class="breadcrumb-item active">View Complain</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Basic Examples -->
+        <div class="row clearfix">
+            <!-- Customer Review -->
+            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-12">
+                <div class="card">
+                    <div class="header">
+
+                    </div>
+                    {% for row in complainVOList%}
+                    <div class="body">
+                        <div class="review-block">
+                            <div class="row table-hover">
+                                <div class="review-img">
+                                    <img src="../../static/adminResource/image/u2.png" alt="">
+                                </div>
+                                <div class="col">
+                                    <h6 class="m-b-15">{{ row['complainSubject'] }}
+
+                                    </h6>
+
+                                    <p class="m-t-15 m-b-15 text-muted">{{ row['complainDescription'] }}
+                                    {%if row['complainFileName'] != None %}
+                                    <a href="{{ row['complainFilePath'] }}{{ row['complainFileName'] }}" target="_blank">
+                                        <i class="material-icons "
+                                               style="color: darkblue;font-size: 18px">insert_drive_file</i>
+                                    </a>
+                                     {%endif%}
+                                    <a href="/user/deleteComplain?complainId={{ row['complainId'] }}">
+                                        <i class="material-icons m-r-10"
+                                               style="color: red;font-size: 18px">delete_forever</i>
+                                    </a>
+                                    <h6>
+                                    <span class="float-right m-r-10 text-muted">{{ row['complainDate'] }}</span>
+                                    </h6>
+                                    </p>
+
+
+                                </div>
+                            </div>
+                            {% if row['complainStatus'] == 'Replied'%}
+                            <div class="row">
+                                <div class="review-img">
+                                    <img src="../../static/adminResource/image/u5.png" style="margin-left: 80px" alt="">
+                                </div>
+                                <div class="col">
+                                    <h6 class="m-b-15">{{ row['replySubject'] }}
+
+                                    </h6>
+                                    <p class="m-t-15 m-b-15 text-muted">{{ row['replyMessage'] }}
+                                        {%if row['replyFileName'] != None%}
+                                    <a href="{{ row['replyFilePath'] }}{{ row['replyFileName'] }}" target="_blank">
+                                        <i class="material-icons "
+                                               style="color: darkblue;font-size: 18px">insert_drive_file</i>
+                                    </a>
+                                    {%endif%}
+
+                                    <h6>
+                                    <span class="float-right m-r-10 text-muted">{{ row['complainDate'] }}</span>
+                                    </h6>
+                                    </p>
+
+
+                                    <br>
+
+
+
+                                </div>
+                            </div>
+                            {%endif%}
+
+                        </div>
+                    </div>
+                    {%endfor%}
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- Plugins Js -->
+<script src="../../static/adminResource/js/app.min.js"></script>
+<script src="../../static/adminResource/js/table.min.js"></script>
+<!-- Custom Js -->
+<script src="../../static/adminResource/js/admin.js"></script>
+<script src="../../static/adminResource/js/jquery-datatable.js"></script>
+<!-- Demo Js -->
+</body>
+
+</html>

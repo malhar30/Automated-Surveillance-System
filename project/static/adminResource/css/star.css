@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.rate {
+
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+}
+
+.rate:not(:checked) > input {
+    position: absolute;
+    top: -9999px;
+}
+
+.rate:not(:checked) > .re {
+    float: right;
+    width: 50px;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 32px;
+    color: #ccc;
+}
+
+.rate:not(:checked) > .re:before {
+    content: '★ ';
+}
+
+.rate > input:checked ~ .re {
+    color: #ffc700;
+}
+
+.rate:not(:checked) > .re:hover,
+.rate:not(:checked) > .re:hover ~ .re {
+    color: #deb217;
+}
+
+.rate > input:checked + .re:hover,
+.rate > input:checked + .re:hover ~ .re,
+.rate > input:checked ~ .re:hover,
+.rate > input:checked ~ .re:hover ~ .re,
+.rate > .re:hover ~ input:checked ~ .re {
+    color: #c59b08;
+}

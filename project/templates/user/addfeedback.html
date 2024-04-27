@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>Post Feedback - Automate Surveillance System</title>
+    <!-- Favicon-->
+    <!--<link rel="icon" href="../../static/adminResource/image/favicon.ico" type="image/x-icon">-->
+    <!-- Plugins Core Css -->
+    <link href="../../static/adminResource/css/app.min.css" rel="stylesheet">
+    <!-- Custom Css -->
+    <link href="../../static/adminResource/css/style.css" rel="stylesheet">
+    <!-- You can choose a theme from css/styles instead of get all themes -->
+    <link href="../../static/adminResource/css/all-themes.css" rel="stylesheet"/>
+
+    <link href="../../static/adminResource/css/star.css" rel="stylesheet"/>
+
+
+</head>
+
+<body class="light">
+<!-- Page Loader -->
+<div class="page-loader-wrapper">
+    <div class="loader">
+
+        <p>Please wait...</p>
+    </div>
+</div>
+<!-- #END# Page Loader -->
+<!-- Overlay For Sidebars -->
+<div class="overlay"></div>
+<!-- #END# Overlay For Sidebars -->
+<!-- Top Bar -->
+{%include 'user/header.html' %}
+<!-- #Top Bar -->
+<div>
+    <!-- Left Sidebar -->
+    {%include 'user/menu.html' %}
+    <!-- #END# Left Sidebar -->
+    <!-- Right Sidebar -->
+
+    <!-- #END# Right Sidebar -->
+</div>
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <ul class="breadcrumb breadcrumb-style ">
+                        <li class="breadcrumb-item">
+                            <h4 class="page-title">Post Feedback</h4>
+                        </li>
+                        <li class="breadcrumb-item bcrumb-1">
+                            <a href="/user/loadDashboard">
+                                <i class="fas fa-home"></i>Home</a>
+                        </li>
+                        <li class="breadcrumb-item bcrumb-2">
+                            <a href="#" onClick="return false;">Feedback</a>
+                        </li>
+                        <li class="breadcrumb-item active">Post Feedback</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Basic Examples -->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            <strong></strong></h2>
+
+                    </div>
+                    <div class="body">
+                        <form id="form_validation" method="POST" action="/user/insertFeedback">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" name="feedbackSubject" required>
+                                    <label class="form-label">Feedback Subject</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-line">
+                                        <textarea name="feedbackDescription" cols="30" rows="5"
+                                                  class="form-control no-resize"
+                                                  required></textarea>
+
+                                    <label class="form-label">Feedback Description</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="rate ">
+                                    <input type="radio" id="star5" name="feedbackRating" value="5"/>
+                                    <label class="re" for="star5" title="5 stars">5stars</label>
+
+                                    <input type="radio" id="star4" name="feedbackRating" value="4"/>
+                                    <label class="re" for="star4" title="4 stars">4 stars</label>
+
+                                    <input type="radio" id="star3" name="feedbackRating" value="3"/>
+                                    <label class="re" for="star3" title="3 stars">3 stars</label>
+
+                                    <input type="radio" id="star2" name="feedbackRating" value="2"/>
+                                    <label class="re" for="star2" title="2 stars">2 stars</label>
+
+                                    <input type="radio" id="star1" name="feedbackRating" value="1"/>
+                                    <label class="re" for="star1" title="1 star">1 star</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="clear: left">
+                                <button class="btn-hover color-7" type="submit">SUBMIT</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- Plugins Js -->
+<script src="../../static/adminResource/js/app.min.js"></script>
+<script src="../../static/adminResource/js/table.min.js"></script>
+<!-- Custom Js -->
+<script src="../../static/adminResource/js/admin.js"></script>
+<script src="../../static/adminResource/js/jquery-datatable.js"></script>
+<!-- Demo Js -->
+</body>
+
+</html>

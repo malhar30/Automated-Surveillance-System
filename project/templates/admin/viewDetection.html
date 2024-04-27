@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>View Detection - Automate Surveillance System</title>
+    <!-- Favicon-->
+    <!--<link rel="icon" href="../../static/adminResource/image/favicon.ico" type="image/x-icon">-->
+    <!-- Plugins Core Css -->
+    <link href="../../static/adminResource/css/app.min.css" rel="stylesheet">
+    <!-- Custom Css -->
+    <link href="../../static/adminResource/css/style.css" rel="stylesheet">
+    <!-- You can choose a theme from css/styles instead of get all themes -->
+    <link href="../../static/adminResource/css/all-themes.css" rel="stylesheet" />
+</head>
+
+<body class="light">
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <p>Please wait...</p>
+        </div>
+    </div>
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Top Bar -->
+    {%include 'admin/header.html' %}
+    <!-- #Top Bar -->
+    <div>
+        <!-- Left Sidebar -->
+        {%include 'admin/menu.html' %}
+        <!-- #END# Left Sidebar -->
+        <!-- Right Sidebar -->
+
+        <!-- #END# Right Sidebar -->
+    </div>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <ul class="breadcrumb breadcrumb-style ">
+                            <li class="breadcrumb-item">
+                                <h4 class="page-title">Manage Detection</h4>
+                            </li>
+                            <li class="breadcrumb-item bcrumb-1">
+                                <a href="/admin/loadDashboard">
+                                    <i class="fas fa-home"></i>Admin Dashboard</a>
+                            </li>
+                            <li class="breadcrumb-item bcrumb-2">
+                                <a href="#" onClick="return false;">Manage Detection</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Basic Examples -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="#" onClick="return false;" class="dropdown-toggle" data-toggle="dropdown"
+                                        role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li>
+                                            <a href="#" onClick="return false;">Action</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" onClick="return false;">Another action</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" onClick="return false;">Something else here</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body">
+                            <div class="table-responsive">
+                                <table
+                                    class="table table-hover js-basic-example dataTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Detection File Name</th>
+                                            <th>Detection Date</th>
+                                            <th>Detection Time</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for row in detectionVOList%}
+                                        <tr>
+                                            <td>{{row[0]['detectionFileName']}}</td>
+                                            <td>{{row[0]['detectionUploadDate']}}</td>
+                                            <td>{{row[0]['detectionUploadTime']}}</td>
+
+                                            <td >
+
+                                                <a href="{{row[0]['detectionFilePath']}}{{row[0]['detectionFileName']}}" target="_blank" >
+                                               <button class="btn tblActnBtn" style="color: darkblue">
+                                                    <i class="material-icons">visibility</i>
+                                                </button></a>
+                                                <a href="/admin/deleteDetection?detectionId={{row[0]['detectionId']}}">
+                                               <button class="btn tblActnBtn" style="color: red">
+                                                    <i class="material-icons">delete</i>
+                                                </button></a>
+
+                                           </td>
+                                        </tr>
+                                    {%endfor%}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- Plugins Js -->
+    <script src="../../static/adminResource/js/app.min.js"></script>
+    <script src="../../static/adminResource/js/table.min.js"></script>
+    <!-- Custom Js -->
+    <script src="../../static/adminResource/js/admin.js"></script>
+    <script src="../../static/adminResource/js/jquery-datatable.js"></script>
+    <!-- Demo Js -->
+</body>
+
+</html>

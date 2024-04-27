@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>View Complain - Automate Surveillance System</title>
+    <!-- Favicon-->
+    <!--<link rel="icon" href="../../static/adminResource/image/favicon.ico" type="image/x-icon">-->
+    <!-- Plugins Core Css -->
+    <link href="../../static/adminResource/css/app.min.css" rel="stylesheet">
+    <!-- Custom Css -->
+    <link href="../../static/adminResource/css/style.css" rel="stylesheet">
+    <!-- You can choose a theme from css/styles instead of get all themes -->
+    <link href="../../static/adminResource/css/all-themes.css" rel="stylesheet" />
+</head>
+
+<body class="light">
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+
+            <p>Please wait...</p>
+        </div>
+    </div>
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Top Bar -->
+    {%include 'user/header.html' %}
+    <!-- #Top Bar -->
+    <div>
+        <!-- Left Sidebar -->
+        {%include 'user/menu.html' %}
+        <!-- #END# Left Sidebar -->
+        <!-- Right Sidebar -->
+
+        <!-- #END# Right Sidebar -->
+    </div>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <ul class="breadcrumb breadcrumb-style ">
+                            <li class="breadcrumb-item">
+                                <h4 class="page-title">View Complain</h4>
+                            </li>
+                            <li class="breadcrumb-item bcrumb-1">
+                                <a href="/user/loadDashboard">
+                                    <i class="fas fa-home"></i>User Dashboard</a>
+                            </li>
+                            <li class="breadcrumb-item bcrumb-2">
+                                <a href="#" onClick="return false;">Manage Complain</a>
+                            </li>
+                            <li class="breadcrumb-item active">View Complain</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Basic Examples -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="#" onClick="return false;" class="dropdown-toggle" data-toggle="dropdown"
+                                        role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li>
+                                            <a href="#" onClick="return false;">Action</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" onClick="return false;">Another action</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" onClick="return false;">Something else here</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body">
+                            <div class="table-responsive">
+                                <table
+                                    class="table table-hover js-basic-example dataTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Complain Subject</th>
+                                            <th>Complain Description</th>
+                                            <th>Complain Date</th>
+                                            <th>Complain Time</th>
+                                            <th>Complain Status</th>
+                                            <th>Complain Attachment</th>
+                                            <th>Complain Reply</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for row in complainVOList %}
+                                        <tr>
+                                            <td>{{ row['complainSubject'] }}</td>
+                                            <td>{{ row['complainDescription'] }}</td>
+                                            <td>{{ row['complainDate'] }}</td>
+                                            <td>{{ row['complainTime'] }}</td>
+                                            <td>{% if row['complainStatus'] == 'Pending'%}
+                                                <span class="label l-bg-orange shadow-style">Pending</span>
+                                                 {%endif%}
+                                                {% if row['complainStatus'] == 'Replied'%}
+                                                <span class="label l-bg-purple shadow-style">Replied</span>
+                                                {%endif%}
+
+                                            </td>
+                                            <td><a href="{{ row['complainFilePath'] }}{{ row['complainFileName'] }}" target="_blank">
+                                               <button class="btn-hover btn-border-radius color-8">
+                                                   View
+                                               </button></a></td>
+                                            <td><a href="/user/viewComplainReply?complainId={{ row['complainId'] }}">
+                                              <button class="btn-hover btn-border-radius color-8">
+                                                   View
+                                              </button></a></td>
+                                            <td><a href="/user/deleteComplain?complainId={{ row['complainId'] }}">
+                                               <button class="btn-hover btn-border-radius color-10">
+                                                   Delete
+                                               </button></a></td>
+                                        </tr>
+                                        {% endfor%}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- Plugins Js -->
+    <script src="../../static/adminResource/js/app.min.js"></script>
+    <script src="../../static/adminResource/js/table.min.js"></script>
+    <!-- Custom Js -->
+    <script src="../../static/adminResource/js/admin.js"></script>
+    <script src="../../static/adminResource/js/jquery-datatable.js"></script>
+    <!-- Demo Js -->
+</body>
+
+</html>

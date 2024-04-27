@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Manage Feedback - Automate Surveillance System</title>
+    <!-- Favicon-->
+    <!--<link rel="icon" href="../../static/adminResource/image/favicon.ico" type="image/x-icon">-->
+    <!-- Plugins Core Css -->
+    <link href="../../static/adminResource/css/app.min.css" rel="stylesheet">
+    <!-- Custom Css -->
+    <link href="../../static/adminResource/css/style.css" rel="stylesheet">
+    <!-- You can choose a theme from css/styles instead of get all themes -->
+    <link href="../../static/adminResource/css/all-themes.css" rel="stylesheet" />
+</head>
+
+<body class="light">
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <p>Please wait...</p>
+        </div>
+    </div>
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Top Bar -->
+    {%include 'admin/header.html' %}
+    <!-- #Top Bar -->
+    <div>
+        <!-- Left Sidebar -->
+        {%include 'admin/menu.html' %}
+        <!-- #END# Left Sidebar -->
+        <!-- Right Sidebar -->
+
+        <!-- #END# Right Sidebar -->
+    </div>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <ul class="breadcrumb breadcrumb-style ">
+                            <li class="breadcrumb-item">
+                                <h4 class="page-title">Manage Feedback</h4>
+                            </li>
+                            <li class="breadcrumb-item bcrumb-1">
+                                <a href="/admin/loadDashboard">
+                                    <i class="fas fa-home"></i>Admin Dashboard</a>
+                            </li>
+                            <li class="breadcrumb-item bcrumb-2">
+                                <a href="#" onClick="return false;">Manage Feedback</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Basic Examples -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="#" onClick="return false;" class="dropdown-toggle" data-toggle="dropdown"
+                                        role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li>
+                                            <a href="#" onClick="return false;">Action</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" onClick="return false;">Another action</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" onClick="return false;">Something else here</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body">
+                            <div class="table-responsive">
+                                <table
+                                    class="table table-hover js-basic-example dataTable">
+                                    <thead>
+                                        <tr>
+                                            <th>User Name</th>
+                                            <th>Feedback Subject</th>
+                                            <th>Feedback Description</th>
+                                            <th>Feedback Rating</th>
+                                            <th>Feedback Date</th>
+                                            <th>Feedback Time</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {%for row in feedbackVOList%}
+                                        <tr>
+                                            <td>{{row[1]['loginUsername']}}</td>
+                                            <td>{{row[0]['feedbackSubject']}}</td>
+                                            <td>{{row[0]['feedbackDescription']}}</td>
+                                            <td style="width:100px">
+                                                {% for i in range(0,row[0]['feedbackRating'])%}
+                                                <i class="fas fa-star" style="color: orange;"></i>
+                                                {%endfor%}
+                                            </td>
+                                            <td>{{row[0]['feedbackDate']}}</td>
+                                            <td>{{row[0]['feedbackTime']}}</td>
+                                            {%if row[0]['feedbackTo_LoginId'] == None%}
+                                            <td><a href="/admin/reviewFeedback?feedbackId={{row[0]['feedbackId']}}">
+                                                <span class="label l-bg-red shadow-style">Review</span>
+                                            </a></td>
+                                            {%endif%}
+                                            {%if row[0]['feedbackTo_LoginId'] != None%}
+                                            <td>
+                                                 <span class="label l-bg-green shadow-style">Reviewed</span>
+                                            </td>
+                                            {%endif%}
+
+
+                                        </tr>
+                                    {%endfor%}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- Plugins Js -->
+    <script src="../../static/adminResource/js/app.min.js"></script>
+    <script src="../../static/adminResource/js/table.min.js"></script>
+    <!-- Custom Js -->
+    <script src="../../static/adminResource/js/admin.js"></script>
+    <script src="../../static/adminResource/js/jquery-datatable.js"></script>
+    <!-- Demo Js -->
+</body>
+
+</html>

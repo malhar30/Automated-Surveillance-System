@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>Profile - Automate Surveillance System</title>
+    <!-- Favicon-->
+    <!--<link rel="icon" href="../../static/adminResource/image/favicon.ico" type="image/x-icon">-->
+    <!-- Plugins Core Css -->
+    <link href="../../static/adminResource/css/app.min.css" rel="stylesheet">
+    <!-- Custom Css -->
+    <link href="../../static/adminResource/css/style.css" rel="stylesheet">
+    <!-- You can choose a theme from css/styles instead of get all themes -->
+    <link href="../../static/adminResource/css/all-themes.css" rel="stylesheet"/>
+</head>
+
+<body class="light">
+<!-- Page Loader -->
+<div class="page-loader-wrapper">
+    <div class="loader">
+        <p>Please wait...</p>
+    </div>
+</div>
+<!-- #END# Page Loader -->
+<!-- Overlay For Sidebars -->
+<div class="overlay"></div>
+<!-- #END# Overlay For Sidebars -->
+<!-- Top Bar -->
+{%include 'user/header.html' %}
+<!-- #Top Bar -->
+<div>
+    <!-- Left Sidebar -->
+    {%include 'user/menu.html' %}
+
+</div>
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <ul class="breadcrumb breadcrumb-style ">
+                        <li class="breadcrumb-item">
+                            <h4 class="page-title">Profile</h4>
+                        </li>
+                        <li class="breadcrumb-item bcrumb-1">
+                            <a href="/user/loadDashboard">
+                                <i class="fas fa-home"></i>Home</a>
+                        </li>
+                        <li class="breadcrumb-item bcrumb-2">
+                            <a href="/user/loadProfile">Profile</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div>
+                    <div class="header">
+                        <div class="col-xs-12 col-sm-6">
+
+                        </div>
+
+                    </div>
+                    <div class="body">
+                        <div class="row">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4">
+                                <div class="card border-apply">
+                                    <div class="m-b-20">
+                                        <div class="contact-grid">
+                                            {% for row in profileVOList %}
+                                            <div class="profile-header l-bg-purple-dark">
+                                                <div class="user-name">&nbsp;</div>
+                                                <div class="user-name">{{ row[0]['registerFirstname'] }} {{
+                                                    row[0]['registerLastname'] }}
+                                                </div>
+
+
+                                            </div>
+                                            <img src="../../assets/images/user/usrbig6.jpg" class="user-img" alt="">
+                                            <div>
+                                                    <span class="phone">
+                                                        <i class="material-icons">email</i>{{ row[1]['loginUsername'] }}</span>
+                                            </div>
+                                            <div>
+                                                    <span class="phone">
+                                                        <i class="material-icons">phone</i>{{ row[0]['registerContactNumber'] }}</span>
+                                            </div>
+                                            <div class="profile-userbuttons">
+                                                <a href="/user/changePassword">
+                                                    <button type="button"
+                                                            class="btn btn-info btn-border-radius waves-effect">Change
+                                                        Password
+                                                    </button>
+                                                </a>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Plugins Js -->
+<script src="../../static/adminResource/js/app.min.js"></script>
+<script src="../../static/adminResource/js/table.min.js"></script>
+<!-- Custom Js -->
+<script src="../../static/adminResource/js/admin.js"></script>
+<script src="../../static/adminResource/js/jquery-datatable.js"></script>
+<!-- Demo Js -->
+</body>
+
+</html>
